@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="sr-Latn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Libre Srbija</title>
+    <style>
+        :root {
+            --primary-color: #4a90e2;
+            --logo-height: 150px;
+            --bg-dark: #1a1a1a;
+            --bg-darker: #121212;
+            --bg-lighter: #2a2a2a; /* New lighter background color */
+            --text-color: #e0e0e0;
+            --card-bg: #242424;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background: var(--bg-dark);
+        }
+
+        header {
+            background: var(--bg-darker);
+            color: var(--text-color);
+            padding: 1rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo {
+            height: var(--logo-height);
+            width: auto;
+            display: block;
+        }
+
+        nav {
+            background: var(--bg-darker);
+            padding: 1rem;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .hero {
+            background: var(--bg-darker);
+            padding: 1.5rem 1rem;
+            text-align: center;
+        }
+
+        .hero h2 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .features {
+            padding: 3rem 1rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .products {
+            padding: 3rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .product-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .product-image {
+            width: 100%;
+            height: auto; /* Allows the image to scale proportionally */
+            max-height: 200px; /* Adjust this value as needed */
+            object-fit: contain; /* Ensures the entire image is visible */
+        }
+
+        .product-info {
+            padding: 1rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            margin-top: 1rem;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+            width: 100%;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            max-width: 400px;
+            margin: 20% auto;
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-color);
+        }
+
+        .contact-number {
+            font-size: 1.5rem;
+            margin: 1rem 0;
+            color: var(--primary-color);
+        }
+
+        footer {
+            background: var(--bg-darker);
+            color: var(--text-color);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        footer a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .github-links {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+            .modal-content {
+                margin: 30% 1rem;
+            }
+        }
+        .why-us {
+            background: var(--bg-lighter); /* Apply the lighter background color */
+            padding: 3rem 1rem;
+            text-align: center;
+        }
+
+        .why-us h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .why-us p {
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <h2>Dobrodošli u Libre Srbija</h2>
+        <p>Specijalizovani smo za prodaju laptopova sa Coreboot i Libreboot firmware-om</p>
+    </section>
+
+    <section class="why-us">
+        <h2>Zašto baš Libre Srbija?</h2>
+        <p>
+            Moje ime je Petar i dugo se bavim računarima, kako softverom tako i hardverom. Već godinama modifikujem ThinkPad i HP laptopove sa Libreboot/Coreboot sistemima, radim nadogradnje i razne druge modifikacije. Odlučio sam da ovaj hobi podelim sa svima koji žele da imaju laptop fokusiran na privatnost i FOSS softver, a ne žele da se opterećuju flešovanjem, konfigurisanjem, modifikovanjem i ostalim tehničkim stvarima.
+        </p>
+    </section>
+
+    <section class="features">
+        <div class="feature-card">
+            <h3>Coreboot/Libreboot</h3>
+            <p>Svi naši laptopovi dolaze sa slobodnim firmware-om, garantujući vašu privatnost i kontrolu nad hardverom.</p>
+        </div>
+        <div class="feature-card">
+            <h3>Modifikovani hardver</h3>
+            <p>Modifikujemo i unapređujemo laptopove za bolje performanse i sigurnost.</p>
+        </div>
+        <div class="feature-card">
+            <h3>Tehnička podrška</h3>
+            <p>Pružamo potpunu podršku za sve proizvode, uključujući instalaciju i konfiguraciju.</p>
+        </div>
+    </section>
+
+    <section class="products" id="proizvodi">
+        <h2>NAŠI PROIZVODI</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img class="product-image" src="images/products/x230.png" alt="ThinkPad X230">
+                    <div class="product-info">
+                    <h3>ThinkPad X230</h3>
+                    <p>- Intel Core i5 2520M</p>
+                    <p>- Intel HD Graphics</p>
+                    <p>- 8GB RAM DDR3</p>
+                    <p>- 256GB SSD</p>
+                    <p>- Rezolucija 1920x1080</p>
+                    <p>- Baterija prosek 2h</p>
+                    <p>- Libreboot/Coerboot firmware</p>
+                    <p>- Linux/Windows (Zbog privatnosti preporučujemo linux)</p>
+                    <button onclick="showContactInfo()" class="cta-button">PORUČI</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <img class="product-image" src="images/products/t440p.png" alt="ThinkPad T440P">
+                <div class="product-info">
+                    <h3>ThinkPad T440P</h3>
+                    <p>- Intel Core i7 4700MQ</p>
+                    <p>- Intel HD Graphics</p>
+                    <p>- 16GB RAM DDR3</p>
+                    <p>- 256GB SSD</p>
+                    <p>- Rezolucija 1920x1080</p>
+                    <p>- Baterija prosek 2h</p>
+                    <p>- Libreboot/Coreboot firmware</p>
+                    <p>- Linux/Windows (Zbog privatnosti preporučujemo linux)</p>
+                    <button onclick="showContactInfo()" class="cta-button">PORUČI</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <img class="product-image" src="images/products/w541.png" alt="ThinkPad W541">
+                <div class="product-info">
+                    <h3>ThinkPad W541</h3>
+                    <p>- Intel Core i5 4210M</p>
+                    <p>- nVidia K1100M / Intel HD Graphics</p>
+                    <p>- 16GB RAM DDR3</p>
+                    <p>- 256GB SSD</p>
+                    <p>- Rezolucija 1920x1080</p>
+                    <p>- Baterija prosek 2h</p>
+                    <p>- Libreboot/Coreboot firmware</p>
+                    <p>- Linux/Windows (Zbog privatnosti preporučujemo linux)</p>
+                    <button onclick="showContactInfo()" class="cta-button">PORUČI</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h2>KONTAKTIRAJTE NAS</h2>
+            <p>Za porudžbine pozovite:</p>
+            <div class="contact-number">062/1406-127</div>
+            <p>Radno vreme: 09:00h - 20:00hh</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 Libre Srbija - Svi proizvodi dolaze sa usmenom garancijom i potpunom podrškom</p>
+        <p>Kontakt: naruci@libresrbija.store</p>
+        <p class="github-links">
+            <a href="https://codeberg.org/libreboot/lbmk" target="_blank">Libreboot</a> |
+            <a href="https://github.com/coreboot/coreboot" target="_blank">Coreboot</a> |
+            <a href="05a8a9ad8bf75f98f5d7236373a39f8328c1ffa27e6d378b638b1e393ff9a3126a" target="_blank">Session Chat: 05a8a9ad8bf75f98f5d7236373a39f8328c1ffa27e6d378b638b1e393ff9a3126a</a>
+        </p>
+    </footer>
+
+    <script>
+        const modal = document.getElementById('contactModal');
+
+        function showContactInfo() {
+            modal.style.display = 'block';
+        }
+
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
